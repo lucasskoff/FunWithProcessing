@@ -65,9 +65,11 @@ void draw() {
   // scaled to height/2 and then multiplied by a scale factor
   float rmsScaled = (sum * (height/2) * scale) / 12;
   
-  makeText(textX, textY);
+  
   makeCloudLine(xArray, baseY-200, rmsScaled, 0);
+  makeText(textX, textY);
   makeCloudLine(xArray, baseY, rmsScaled, 100);
+  makeGrass(0, 0);
   
   for(int i = 0; i < xArray.length; i++) {
     xArray[i] = xArray[i] - 1;
@@ -100,4 +102,9 @@ void makeCloud(float x, float y, float rmsScaled) {
 void makeText(float x, float y) {
   fill(0, 0, 0);
   text("Tolusteve Def", x, y);
+}
+
+void makeGrass(float x, float y) {
+  fill(0, 255, 0);
+  triangle(993, 470, 985, 500, 1000, 500);
 }
