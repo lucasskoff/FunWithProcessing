@@ -26,7 +26,7 @@ float currentX;
 float currentY;
 
 void setup() {
-  size(640, 360);
+  size(1000, 500);
 
   //Load and play a soundfile and loop it
   sample = new SoundFile(this, "intro.mp3");
@@ -55,6 +55,7 @@ void draw() {
 
   // Draw an ellipse at a size based on the audio analysis
   ellipse(currentX, currentY, rmsScaled, rmsScaled);
+  ellipse(currentX + 30, currentY, rmsScaled, rmsScaled);
   
   currentX = currentX - 1;
 }
