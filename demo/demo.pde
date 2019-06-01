@@ -69,11 +69,13 @@ void draw() {
   // scaled to height/2 and then multiplied by a scale factor
   float rmsScaled = (sum * (height/2) * scale) / 12;
   
-  
-  makeCloudLine(xArray, baseY-200, rmsScaled, 0);
-  makeText(textX, textY);
   makeCloudLine(xArray, baseY, rmsScaled, 100);
-  makeGrass(0, 0, frame);
+  makeText(textX, textY);
+  makeCloudLine(xArray, baseY-200, rmsScaled, 0);
+  
+  for(int i = 1000; i > 0; i -= 15) {
+    makeGrass(i, 0, frame);
+  }
   
   for(int i = 0; i < xArray.length; i++) {
     xArray[i] = xArray[i] - 1;
@@ -115,19 +117,16 @@ void makeText(float x, float y) {
 }
 
 void makeGrass(float x, float y, int frame) {
-  fill(0, 255, 0);
+  fill(10, 255, 10);
   switch(frame) {
     case 0:
-    triangle(985, 470, 985, 500, 1000, 500);
-    break;
-    case 1:
-    triangle(993, 470, 985, 500, 1000, 500);
+    triangle(x - 15, 470, x - 15, 500, x, 500);
     break;
     case 2:
-    triangle(1000, 470, 985, 500, 1000, 500);
+    triangle(x, 470, x - 15, 500, x, 500);
     break;
     default:
-    triangle(993, 470, 985, 500, 1000, 500);
+    triangle(x - 7, 470, x - 15, 500, x, 500);
     break;
   }
 }
