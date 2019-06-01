@@ -42,16 +42,16 @@ void setup() {
 
 void draw() {
   // Set background color, noStroke and fill color
-  background(0, 0, 255);
+  background(0, 140, 167);
   noStroke();
-  fill(255, 0, 150);
+  fill(255, 255, 255);
 
   // Smooth the rms data by smoothing factor
   sum += (rms.analyze() - sum) * smoothFactor;  
 
   // rms.analyze() return a value between 0 and 1. It's
   // scaled to height/2 and then multiplied by a scale factor
-  float rmsScaled = sum * (height/2) * scale;
+  float rmsScaled = (sum * (height/2) * scale) / 12;
 
   // Draw an ellipse at a size based on the audio analysis
   ellipse(currentX, currentY, rmsScaled, rmsScaled);
