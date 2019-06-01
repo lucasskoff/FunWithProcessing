@@ -30,6 +30,10 @@ float textY;
 
 float[] xArray = {-15, 185, 385, 585, 785, 985, 1185};
 
+int frame = 0;
+
+int increment = 0;
+
 void setup() {
   size(1000, 500);
 
@@ -69,7 +73,7 @@ void draw() {
   makeCloudLine(xArray, baseY-200, rmsScaled, 0);
   makeText(textX, textY);
   makeCloudLine(xArray, baseY, rmsScaled, 100);
-  makeGrass(0, 0);
+  makeGrass(0, 0, frame);
   
   for(int i = 0; i < xArray.length; i++) {
     xArray[i] = xArray[i] - 1;
@@ -80,6 +84,12 @@ void draw() {
   
   if(textY < height) {
     textY = textY + 1;
+  }
+  
+  increment++;
+  if(increment > 60) {
+    frame = (frame + 1) % 4;
+    increment = 0;
   }
 }
 
@@ -104,7 +114,20 @@ void makeText(float x, float y) {
   text("Tolusteve Def", x, y);
 }
 
-void makeGrass(float x, float y) {
+void makeGrass(float x, float y, int frame) {
   fill(0, 255, 0);
-  triangle(993, 470, 985, 500, 1000, 500);
+  switch(frame) {
+    case 0:
+    triangle(985, 470, 985, 500, 1000, 500);
+    break;
+    case 1:
+    triangle(993, 470, 985, 500, 1000, 500);
+    break;
+    case 2:
+    triangle(1000, 470, 985, 500, 1000, 500);
+    break;
+    default:
+    triangle(993, 470, 985, 500, 1000, 500);
+    break;
+  }
 }
