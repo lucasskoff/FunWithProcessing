@@ -56,6 +56,8 @@ void draw() {
   // Draw an ellipse at a size based on the audio analysis
   ellipse(currentX, currentY, rmsScaled, rmsScaled);
   ellipse(currentX + 30, currentY, rmsScaled, rmsScaled);
+  ellipse(currentX + 60, currentY, rmsScaled, rmsScaled);
+  ellipse(currentX + 15, currentY - 15, rmsScaled, rmsScaled);
   
   currentX = currentX - 1;
 }
