@@ -33,6 +33,8 @@ float[] xArray = {-15, 185, 385, 585, 785, 985, 1185};
 int frame = 0;
 
 int increment = 0;
+
+int skyFrame = 0;
  
 void setup() {
   size(1000, 500);
@@ -70,7 +72,7 @@ void draw() {
   float rmsScaled = (sum * (height/2) * scale) / 12;
   
   for(int i = 0; i < 10; i++) {
-    makeSky(i * 50, i * 25);
+    makeSky(i * 50, i * 25, skyFrame * 10);
   }
   
   
@@ -95,6 +97,7 @@ void draw() {
   
   increment++;
   if(increment > 60) {
+    skyFrame++;
     frame = (frame + 1) % 4;
     increment = 0;
   }
@@ -136,7 +139,19 @@ void makeGrass(float x, float y, int frame) {
   }
 }
 
-void makeSky(float y, int red) {
-  fill(red, 140, 167);
+void makeSky(float y, int red, int modifier) {
+  int currRed = red + modifier;
+  int currBlue = 167 + modifier;
+  int currGreen = 140 + modifier;
+  if(currRed > 255) {
+    currRed = 255;
+  }
+  if(currBlue > 255) {
+    currBlue = 255;
+  }
+  if(currGreen > 255) {
+    currGreen = 255;
+  }
+  fill(currRed, 140, 167);
   rect(0, y, 1000, y + 50);
 }
