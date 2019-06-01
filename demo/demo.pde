@@ -22,16 +22,22 @@ float smoothFactor = 0.25;
 // Used for smoothing
 float sum;
 
+float currentX;
+float currentY;
+
 void setup() {
   size(640, 360);
 
   //Load and play a soundfile and loop it
-  sample = new SoundFile(this, "beat.aiff");
+  sample = new SoundFile(this, "intro.mp3");
   sample.loop();
 
   // Create and patch the rms tracker
   rms = new Amplitude(this);
   rms.input(sample);
+  
+  currentX = width;
+  currentY = height / 2;
 }      
 
 void draw() {
@@ -48,5 +54,7 @@ void draw() {
   float rmsScaled = sum * (height/2) * scale;
 
   // Draw an ellipse at a size based on the audio analysis
-  ellipse(width/2, height/2, rmsScaled, rmsScaled);
+  ellipse(currentX, currentY, rmsScaled, rmsScaled);
+  
+  currentX = currentX - 1;
 }
