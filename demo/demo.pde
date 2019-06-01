@@ -28,6 +28,8 @@ float baseY;
 float textX;
 float textY;
 
+float[] xArray = {-15, 185, 385, 585, 785, 985, 1185};
+
 void setup() {
   size(1000, 500);
 
@@ -42,12 +44,11 @@ void setup() {
   baseX = width;
   baseY = height / 2;
   
-  textX = 150;
+  textX = 200;
   textY = 100;
   
   PFont font;
   font = createFont("HACKED.ttf", 100);
-  textAlign(CENTER);
   textFont(font);
 }      
 
@@ -65,12 +66,27 @@ void draw() {
   float rmsScaled = (sum * (height/2) * scale) / 12;
   
   makeText(textX, textY);
-  makeCloud(baseX, baseY, rmsScaled);  
-  makeCloud(baseX + 50, baseY - 100, rmsScaled);
+  makeCloudLine(xArray, baseY-200, rmsScaled, 0);
+  makeCloudLine(xArray, baseY, rmsScaled, 100);
   
-  baseX = baseX - 1;
-  textY = textY + 1;
+  for(int i = 0; i < xArray.length; i++) {
+    xArray[i] = xArray[i] - 1;
+    if(xArray[i] < -215) {
+       xArray[i] = 1200;
+    }
+  }
+  
+  if(textY < height) {
+    textY = textY + 1;
+  }
 }
+
+void makeCloudLine(float[] x, float y, float rmsScaled, float x_modifier) {
+  for(int i = 0; i < x.length; i++) {
+    makeCloud(x[i] + x_modifier, y, rmsScaled);
+  }
+}
+  
 
 void makeCloud(float x, float y, float rmsScaled) {
   fill(255, 255, 255);
