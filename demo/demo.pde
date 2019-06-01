@@ -33,7 +33,7 @@ float[] xArray = {-15, 185, 385, 585, 785, 985, 1185};
 int frame = 0;
 
 int increment = 0;
-
+ 
 void setup() {
   size(1000, 500);
 
@@ -69,6 +69,11 @@ void draw() {
   // scaled to height/2 and then multiplied by a scale factor
   float rmsScaled = (sum * (height/2) * scale) / 12;
   
+  for(int i = 0; i < 10; i++) {
+    makeSky(i * 50, i * 25);
+  }
+  
+  
   makeCloudLine(xArray, baseY, rmsScaled, 100);
   makeText(textX, textY);
   makeCloudLine(xArray, baseY-200, rmsScaled, 0);
@@ -84,7 +89,7 @@ void draw() {
     }
   }
   
-  if(textY < height) {
+  if(textY < height - 7) {
     textY = textY + 1;
   }
   
@@ -129,4 +134,9 @@ void makeGrass(float x, float y, int frame) {
     triangle(x - 7, 470, x - 15, 500, x, 500);
     break;
   }
+}
+
+void makeSky(float y, int red) {
+  fill(red, 140, 167);
+  rect(0, y, 1000, y + 50);
 }
